@@ -1,4 +1,3 @@
-// app/meeting/pesan-ruangan/page.tsx
 'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
@@ -11,7 +10,6 @@ import { ArrowLeft, ChevronRight } from 'lucide-react';
 const SNACK_PRICE = 20000;
 const MEAL_PRICE = 30000;
 
-// --- TIPE DATA & DATA MOCK (TIDAK BERUBAH) ---
 interface FormValues {
   unit: string;
   ruangMeeting: string;
@@ -63,7 +61,6 @@ const PesanRuanganPage: React.FC = () => {
     waktuMulai: '10:00',
     waktuSelesai: '16:00',
     jumlahPeserta: 10,
-    // PERUBAHAN UTAMA DI SINI: Default semua false
     konsumsi: {
       snackSiang: false,
       makanSiang: false,
@@ -75,7 +72,6 @@ const PesanRuanganPage: React.FC = () => {
     peserta: '',
   });
 
-  // Logika Nominal Konsumsi Otomatis (TIDAK BERUBAH)
   const nominalKonsumsi = useMemo(() => {
     const { jumlahPeserta, konsumsi } = values;
     if (jumlahPeserta <= 0) return 0;
@@ -88,7 +84,6 @@ const PesanRuanganPage: React.FC = () => {
     return totalCostPerPerson * jumlahPeserta;
   }, [values.jumlahPeserta, values.konsumsi]);
 
-  // Handler Umum (Input & Checkbox) - (TIDAK BERUBAH)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
 
@@ -117,7 +112,6 @@ const PesanRuanganPage: React.FC = () => {
     }
   };
 
-  // Validasi Waktu (Logic: Waktu Mulai <= Waktu Selesai) - (TIDAK BERUBAH)
   useEffect(() => {
     const start = values.waktuMulai;
     const end = values.waktuSelesai;
@@ -133,7 +127,6 @@ const PesanRuanganPage: React.FC = () => {
     setErrors(prev => ({ ...prev, waktu: waktuError }));
   }, [values.waktuMulai, values.waktuSelesai]);
 
-  // Validasi Jumlah Peserta (Logic: Jumlah Peserta <= Kapasitas) - (TIDAK BERUBAH)
   useEffect(() => {
     let pesertaError = '';
     if (values.jumlahPeserta > values.kapasitas && values.kapasitas > 0) {
@@ -143,7 +136,6 @@ const PesanRuanganPage: React.FC = () => {
   }, [values.jumlahPeserta, values.kapasitas]);
 
 
-  // PERUBAHAN LOGIKA BARU: Ceklis otomatis jika validasi terpenuhi
   useEffect(() => {
     // Kriteria validasi yang harus dipenuhi (sesuai contoh Anda):
     const isValid = !errors.waktu && !errors.peserta && values.jumlahPeserta > 0 && values.waktuMulai !== 'pilih' && values.waktuSelesai !== 'pilih';

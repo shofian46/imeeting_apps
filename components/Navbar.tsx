@@ -7,12 +7,12 @@ import { Bell, ChevronDown, Volume2 } from 'lucide-react'
 
 const Navbar = () => {
   return (
-    // Mengubah background dari gradient menjadi warna solid (biru kehijauan)
-    <nav className="flex-between fixed z-50 w-full px-6 py-4 lg:px-10 bg-[#2496a7] text-white shadow-md h-16">
+    <nav className="flex-between fixed z-50 w-full px-6 py-4 lg:px-10 text-white shadow-md h-16" style={{
+        background: 'linear-gradient(to left, #00778C 0%, #00A6BF 100%)',
+      }}>
 
       {/* Logo dan Brand iMeeting */}
       <div className="flex items-center gap-2">
-        {/* Logo Icon Placeholder (Yellow Icon) */}
         <Link href='/' className='flex items-center gap-1 my-0'>
           <Image src="/icons/PLN.png" alt="iMeeting Logo" width={38} height={52} className='max-sm:size-10 flex items-center' />
           <p className='text-[18px] font-extrabold text-white max-sm:hidden'>iMeeting</p>
